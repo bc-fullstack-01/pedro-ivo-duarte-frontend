@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import server from "../../api/server";
 
-import "./index.css";
-
 import AuthForm from "../../components/Authform";
 
 interface TokenUser {
