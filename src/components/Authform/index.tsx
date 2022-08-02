@@ -6,14 +6,14 @@ import logo from "../../assets/logo.svg";
 
 interface Props {
   onSubmitForm: any;
-  obSubmitButtonText: string;
+  onSubmitButtonText: string;
   onRouteText: string;
   onRouteLink: string;
 }
 
 const AuthForm = ({
   onSubmitForm,
-  obSubmitButtonText,
+  onSubmitButtonText,
   onRouteText,
   onRouteLink,
 }: Props) => {
@@ -59,7 +59,7 @@ const AuthForm = ({
               }
             ></TextField>
             <Button variant="contained" type="submit">
-              {obSubmitButtonText}
+              {onSubmitButtonText}
             </Button>
           </Stack>
           <Link to={onRouteLink}>{onRouteText}</Link>

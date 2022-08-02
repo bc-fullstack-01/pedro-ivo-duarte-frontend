@@ -30,9 +30,9 @@ const Signin = () => {
   return (
     <AuthForm
       onSubmitForm={handleLogin}
-      obSubmitButtonText="Login"
+      onSubmitButtonText="Login"
       onRouteText="Não tem uma conta? Faça o cadastro!"
-      onRouteLink="/security/registry"
+      onRouteLink="/register"
     />
   );
 };
