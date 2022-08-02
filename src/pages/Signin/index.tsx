@@ -13,17 +13,20 @@ const Signin = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (user: string, password: string) => {
-    const response = await server.post("/security/login", {
-      user,
-      password,
-    });
-
-    const { accessToken } = response.data;
-    localStorage.setItem("acessToken", accessToken);
-    const decoded = jwtDecode(accessToken) as TokenUser;
-    localStorage.setItem("user", decoded.user);
-    localStorage.setItem("profile", decoded.profile);
-    navigate("/home");
+    try {
+      const response = await server.post("/security/login", {
+        user,
+        password,
+      });
+      const { accessToken } = response.data;
+      localStorage.setItem("acessToken", accessToken);
+      const decoded = jwtDecode(accessToken) as TokenUser;
+      localStorage.setItem("user", decoded.user);
+      localStorage.setItem("profile", decoded.profile);
+      navigate("/home");
+    } catch (err) {
+      alert(err);
+    }
   };
   return (
     <AuthForm
