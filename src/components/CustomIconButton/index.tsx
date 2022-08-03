@@ -13,7 +13,7 @@ const CustomIconButton = ({ children, label, onClickCallBack }: Props) => {
       size="large"
       arial-lavel={label}
       color="inherit"
-      onClick={() => onClickCallBack}
+      onClick={() => onClickCallBack()}
     >
       {children}
     </IconButton>

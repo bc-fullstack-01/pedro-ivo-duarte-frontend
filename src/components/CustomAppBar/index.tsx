@@ -1,4 +1,5 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import {
   Home as HomeIcon,
   Edit as EditIcon,
@@ -12,6 +13,8 @@ interface Props {
 }
 
 const CustomAppBar = ({ title }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -25,16 +28,16 @@ const CustomAppBar = ({ title }: Props) => {
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <CustomIconButton label="show home" onClickCallBack={() => {}}>
+          <CustomIconButton label="show home" onClickCallBack={() => navigate("/home")}>
             <HomeIcon />
           </CustomIconButton>
-          <CustomIconButton label="show edit" onClickCallBack={() => {}}>
+          <CustomIconButton label="show edit" onClickCallBack={() => {navigate('/create')}}>
             <EditIcon />
           </CustomIconButton>
-          <CustomIconButton label="show profiles" onClickCallBack={() => {}}>
+          <CustomIconButton label="show profiles" onClickCallBack={() => navigate("/profiles")}>
             <GroupIcon />
           </CustomIconButton>
-          <CustomIconButton label="show profile" onClickCallBack={() => {}}>
+          <CustomIconButton label="show profile" onClickCallBack={() => navigate("/profile")}>
             <AccountCircleIcon />
           </CustomIconButton>
         </Box>
