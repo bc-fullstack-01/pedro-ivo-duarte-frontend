@@ -1,16 +1,10 @@
 import { useState, useEffect } from "react";
+import { Divider } from "@mui/material";
 import CustomAppBar from "../../components/CustomAppBar";
 import PostCard from "../../components/PostCard";
 import server from "../../api/server";
 
-interface Post {
-  _id: string;
-  title: string;
-  description: string;
-  profile: {
-    name: string;
-  };
-}
+import { Post } from "../../models/Post";
 
 const Home = () => {
   const [posts, setPosts] = useState<Post[]>(() => []);
@@ -33,13 +27,17 @@ const Home = () => {
     getPosts();
   }, [token]);
 
-  const postsEl = posts.map((post) => <PostCard post={post} />);
+  const postsEl = posts.map((post) => (
+    <>
+      <PostCard post={post} />
+      <Divider />
+    </>
+  ));
 
   return (
     <div>
       <CustomAppBar title="home" />
-      <h1 style={{ marginTop: "100px" }}>Feed</h1>
-      {postsEl}
+      <div style={{ marginTop: "56px" }}>{postsEl}</div>
     </div>
   );
 };
