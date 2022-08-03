@@ -1,4 +1,5 @@
-import { Paper, CardHeader, Avatar } from "@mui/material";
+import { Paper, CardHeader} from "@mui/material";
+import CustomAvatar from "../CustomAvatar";
 
 interface Post {
   _id: string;
@@ -14,10 +15,7 @@ const PostCard = ({ post }: { post: Post }) => {
     <Paper elevation={0}>
       <CardHeader
         avatar={
-          <Avatar>
-            {post.profile.name.slice(0, 2)}
-            title={post.title}
-          </Avatar>
+          <CustomAvatar profileName={post.profile.name} postTitle={post.title}/>
         }
       ></CardHeader>
     </Paper>
