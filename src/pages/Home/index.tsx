@@ -1,9 +1,11 @@
 import React from 'react';
+import CustomAppBar from '../../components/CustomAppBar';
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1> 
+      <CustomAppBar/>
+      <h1>Feed</h1> 
     </div>
   )
 }
