@@ -1,8 +1,17 @@
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
-import { Home as HomeIcon } from "@mui/icons-material";
+import {
+  Home as HomeIcon,
+  Edit as EditIcon,
+  Group as GroupIcon,
+  AccountCircle as AccountCircleIcon,
+} from "@mui/icons-material";
 import CustomIconButton from "../CustomIconButton";
 
-const CustomAppBar = () => {
+interface Props {
+  title: string;
+}
+
+const CustomAppBar = ({ title }: Props) => {
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -12,12 +21,21 @@ const CustomAppBar = () => {
           component="div"
           sx={{ display: { xs: "none", sm: "block" } }}
         >
-          Home
+          {title}
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           <CustomIconButton label="show home" onClickCallBack={() => {}}>
             <HomeIcon />
+          </CustomIconButton>
+          <CustomIconButton label="show edit" onClickCallBack={() => {}}>
+            <EditIcon />
+          </CustomIconButton>
+          <CustomIconButton label="show profiles" onClickCallBack={() => {}}>
+            <GroupIcon />
+          </CustomIconButton>
+          <CustomIconButton label="show profile" onClickCallBack={() => {}}>
+            <AccountCircleIcon />
           </CustomIconButton>
         </Box>
       </Toolbar>
