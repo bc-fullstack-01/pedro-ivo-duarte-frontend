@@ -14,10 +14,9 @@ const PostCard = ({ post }: { post: Post }) => {
   return (
     <Paper elevation={0}>
       <CardHeader
-        avatar={
-          <CustomAvatar profileName={post.profile.name} postTitle={post.title}/>
-        }
-      ></CardHeader>
+        avatar={<CustomAvatar profileName={post.profile.name}/>}
+        title={post.title}
+      />
     </Paper>
   );
 };

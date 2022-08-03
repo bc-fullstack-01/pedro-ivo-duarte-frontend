@@ -1,15 +1,15 @@
 import { Avatar } from "@mui/material";
 
-const CustomAvatar = ({ profileName, postTitle }: { profileName: string, postTitle: string }) => {
+const CustomAvatar = ({ profileName }: { profileName: string }) => {
   let displayInicials;
   if (profileName.split(" ")[1]) {
     displayInicials = profileName
       .split(" ")
       .reduce((acc, string) => acc + string.charAt(0), "");
   } else {
-    displayInicials = profileName.slice(0, 2);
+    displayInicials = profileName.charAt(0);
   }
-  return <Avatar title={postTitle}>{displayInicials}</Avatar>;
+  return <Avatar sx={{backgroundColor: "red"}}>{displayInicials}</Avatar>;
 };
 
 export default CustomAvatar;
