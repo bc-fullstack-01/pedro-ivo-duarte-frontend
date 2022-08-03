@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Paper, CardHeader, Avatar } from "@mui/material";
 import CustomAppBar from "../../components/CustomAppBar";
+import PostCard from "../../components/PostCard";
 import server from "../../api/server";
 
 interface Post {
@@ -33,11 +33,7 @@ const Home = () => {
     getPosts();
   }, [token]);
 
-  const postsEl = posts.map((post) => (
-    <Paper key={post._id} elevation={0}>
-      <CardHeader avatar={<Avatar>{post.profile.name.slice(0, 2)}</Avatar>} />
-    </Paper>
-  ));
+  const postsEl = posts.map((post) => <PostCard post={post} />);
 
   return (
     <div>
