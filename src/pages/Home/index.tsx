@@ -8,7 +8,7 @@ import { Post } from "../../models/Post";
 
 const Home = () => {
   const [posts, setPosts] = useState<Post[]>(() => []);
-  const token = localStorage.getItem("acessToken");
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const getPosts = async () => {

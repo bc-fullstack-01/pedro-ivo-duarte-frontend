@@ -43,6 +43,7 @@ const PostCard = ({ post }: Props) => {
           }}
         >
           <CustomActionIcon
+            postId={post._id}
             comments={post.comments}
             commentCount={post.comments.length}
             likes={post.likes}

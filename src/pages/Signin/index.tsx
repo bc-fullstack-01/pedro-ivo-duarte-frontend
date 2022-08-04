@@ -19,7 +19,7 @@ const Signin = () => {
         password,
       });
       const { accessToken } = response.data;
-      localStorage.setItem("acessToken", accessToken);
+      localStorage.setItem("accessToken", accessToken);
       const decoded = jwtDecode(accessToken) as TokenUser;
       localStorage.setItem("user", decoded.user);
       localStorage.setItem("profile", decoded.profile);
