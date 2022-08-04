@@ -42,7 +42,12 @@ const PostCard = ({ post }: Props) => {
             justifyContent: "start",
           }}
         >
-          <CustomActionIcon commentCount={10} likeCount={5} />
+          <CustomActionIcon
+            comments={post.comments}
+            commentCount={post.comments.length}
+            likes={post.likes}
+            likeCount={post.likes.length}
+          />
         </div>
       </CardActions>
     </Paper>
