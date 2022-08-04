@@ -23,6 +23,7 @@ const CustomActionIcon = ({
   const token = localStorage.getItem("accessToken");
   const profile = localStorage.getItem("profile") as string;
   const [liked, setLiked] = useState<boolean>(false);
+  const [likeCountState, setLikeCountState] = useState<number>(likeCount);
 
   useEffect(() => {
     setLiked(likes.includes(profile));
@@ -38,6 +39,7 @@ const CustomActionIcon = ({
           },
         });
         setLiked(true);
+        setLikeCountState((prevState) => prevState + 1);
       } else {
         await server.post(`/posts/${postId}/unlike`, null, {
           headers: {
@@ -45,6 +47,7 @@ const CustomActionIcon = ({
           },
         });
         setLiked(false);
+        setLikeCountState((prevState) => prevState - 1);
       }
     } catch (err) {
       alert(err);
@@ -61,7 +64,7 @@ const CustomActionIcon = ({
       <CustomFavoriteIcon
         handleLike={handleLike}
         liked={liked}
-        likeCount={likeCount}
+        likeCount={likeCountState}
       />
     </div>
   );
