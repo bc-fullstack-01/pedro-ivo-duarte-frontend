@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Typography, IconButton } from "@mui/material";
-import { ChatBubbleOutline as ChatBubbleOutlineIcon } from "@mui/icons-material";
 import server from "../../api/server";
 
 import CustomFavoriteIcon from "../CustomFavoriteIcon";
+import CustomChatBubbleIcon from "../CustomChatBubbleIcon";
 
 interface Props {
   comments: string[];
@@ -30,7 +29,7 @@ const CustomActionIcon = ({
   }, [profile, likes]);
 
   const handleLike = async () => {
-    console.log('request!')
+    console.log("request!");
     try {
       if (!liked) {
         await server.post(`/posts/${postId}/like`, null, {
@@ -55,12 +54,7 @@ const CustomActionIcon = ({
   };
   return (
     <div>
-      <IconButton>
-        <ChatBubbleOutlineIcon fontSize="small" />
-      </IconButton>
-      <Typography variant="caption" color="text.secondary">
-        {commentCount}
-      </Typography>
+      <CustomChatBubbleIcon commentCount={commentCount} />
       <CustomFavoriteIcon
         handleLike={handleLike}
         liked={liked}
