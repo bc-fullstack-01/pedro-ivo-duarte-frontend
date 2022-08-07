@@ -2,6 +2,10 @@ import { Avatar } from "@mui/material";
 
 const CustomAvatar = ({ profileName }: { profileName: string }) => {
   let displayInicials;
+  console.log(profileName)
+  if (!profileName) {
+    return <Avatar sx={{backgroundColor: "gray"}} />
+  }
   if (profileName.split(" ")[1]) {
     displayInicials = profileName
       .split(" ")
