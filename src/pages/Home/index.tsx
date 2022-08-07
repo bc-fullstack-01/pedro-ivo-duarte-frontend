@@ -11,6 +11,7 @@ const Home = () => {
   const token = localStorage.getItem("accessToken");
   const [posts, setPosts] = useState<Post[]>(() => []);
   const [page, setPage] = useState<number>(0);
+  const [hasMore, setHasmore] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("useEffect");
@@ -21,13 +22,14 @@ const Home = () => {
             authorization: `Bearer ${token}`,
           },
         });
+        setHasmore(response.data.length > 0);
         setPosts([...posts, ...response.data]);
       } catch (err) {
         alert(err);
       }
     };
     getPosts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, page]);
 
   const loadMorePosts = async () => {
@@ -49,7 +51,7 @@ const Home = () => {
         <InfiniteScroll
           dataLength={posts.length}
           next={loadMorePosts}
-          hasMore={true}
+          hasMore={hasMore}
           loader={<h4>Loading...</h4>}
         >
           {postsEl}
