@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Divider } from "@mui/material";
 
@@ -8,6 +9,7 @@ import server from "../../api/server";
 import { Post } from "../../models/Post";
 
 const Home = () => {
+  const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
   const [posts, setPosts] = useState<Post[]>(() => []);
   const [page, setPage] = useState<number>(0);
@@ -37,9 +39,13 @@ const Home = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
+  const handlePostClick = (postId: string) => {
+    navigate(`/posts/${postId}`);
+  };
+
   const postsEl = posts.map((post) => (
     <>
-      <PostCard key={post._id} post={post} />
+      <PostCard key={post._id} post={post} handlePostClick={handlePostClick} />
       <Divider />
     </>
   ));

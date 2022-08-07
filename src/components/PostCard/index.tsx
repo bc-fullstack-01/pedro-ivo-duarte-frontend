@@ -14,17 +14,13 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   post: Post;
+  handlePostClick: any;
 }
 
-const PostCard = ({ post }: Props) => {
-  const navigate = useNavigate();
-  const handlePostClick = () => {
-    navigate(`/posts/${post._id}`);
-  };
-
+const PostCard = ({ post, handlePostClick }: Props) => {
   return (
     <Paper elevation={0} sx={{ marginX: 24 }}>
-      <div onClick={handlePostClick}>
+      <div onClick={() => handlePostClick(post._id)}>
         <CardHeader
           avatar={<CustomAvatar profileName={post.profile.name} />}
           title={post.title}
