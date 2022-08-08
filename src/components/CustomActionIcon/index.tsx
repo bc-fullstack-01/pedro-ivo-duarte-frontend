@@ -5,13 +5,6 @@ import CustomFavoriteIcon from "../CustomFavoriteIcon";
 import CustomChatBubbleIcon from "../CustomChatBubbleIcon";
 
 interface Props {
-  comments:
-    | string[]
-    | {
-        _id: string;
-        description: string;
-        profile: string;
-      }[];
   likes: string[];
   commentCount: number;
   likeCount: number;
@@ -21,7 +14,6 @@ interface Props {
 const CustomActionIcon = ({
   commentCount,
   likeCount,
-  comments,
   likes,
   postId,
 }: Props) => {
