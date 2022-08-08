@@ -2,7 +2,6 @@ import { Avatar } from "@mui/material";
 
 const CustomAvatar = ({ profileName }: { profileName: string }) => {
   let displayInicials;
-  console.log(profileName)
   if (!profileName) {
     return <Avatar sx={{backgroundColor: "gray"}} />
   }

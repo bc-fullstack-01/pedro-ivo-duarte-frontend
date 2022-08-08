@@ -5,7 +5,13 @@ import CustomFavoriteIcon from "../CustomFavoriteIcon";
 import CustomChatBubbleIcon from "../CustomChatBubbleIcon";
 
 interface Props {
-  comments: string[];
+  comments:
+    | string[]
+    | {
+        _id: string;
+        description: string;
+        profile: string;
+      }[];
   likes: string[];
   commentCount: number;
   likeCount: number;

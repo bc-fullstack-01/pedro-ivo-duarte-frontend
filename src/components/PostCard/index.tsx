@@ -10,7 +10,6 @@ import CustomAvatar from "../CustomAvatar";
 import CustomActionIcon from "../CustomActionIcon";
 
 import { Post } from "../../models/Post";
-import { useNavigate } from "react-router-dom";
 
 interface Props {
   post: Post;
