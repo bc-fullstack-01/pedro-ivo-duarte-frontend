@@ -1,5 +1,6 @@
 import { Button, Container, Stack, TextField } from "@mui/material";
 import CustomAppBar from "../../components/CustomAppBar";
+import Dropzone from '../../components/Dropzone';
 
 const NewPost = () => {
   return (
@@ -20,6 +21,7 @@ const NewPost = () => {
             minRows={2}
 
           />
+          <Dropzone onFileUploaded={() => {}} />
           <Button type="submit" variant="contained">
             Publicar
           </Button>
