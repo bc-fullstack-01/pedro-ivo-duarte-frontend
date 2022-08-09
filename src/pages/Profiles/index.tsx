@@ -21,7 +21,7 @@ interface Profile {
 
 const Profiles = () => {
   const token = localStorage.getItem("accessToken");
-  const sessionProfile = localStorage.getItem("profile");
+  const sessionProfile = localStorage.getItem("profile") as string;
   const [profiles, setProfiles] = useState<Profile[]>([]);
   useEffect(() => {
     const getProfiles = async () => {
@@ -44,7 +44,7 @@ const Profiles = () => {
     let response;
 
     try {
-      if (!followers.includes(`${sessionProfile}`)) {
+      if (!followers.includes(sessionProfile)) {
         response = await server.post(`/profiles/${id}/follow`, null, {
           headers: {
             authorization: `Bearer ${token}`,
@@ -55,7 +55,7 @@ const Profiles = () => {
           if (profile._id === id) {
             return {
               ...profile,
-              followers: [...profile.followers, `${sessionProfile}`],
+              followers: [...profile.followers, sessionProfile],
             };
           } else if (profile._id === sessionProfile) {
             return {
@@ -117,7 +117,7 @@ const Profiles = () => {
               variant="contained"
               onClick={() => handleFollow(profile._id, profile.followers)}
             >
-              {profile.followers.includes(`${sessionProfile}`) ? 'Deixar de seguir' : 'Seguir'}
+              {profile.followers.includes(sessionProfile) ? 'Deixar de seguir' : 'Seguir'}
             </Button>
             {/* </div> */}
           </Stack>
