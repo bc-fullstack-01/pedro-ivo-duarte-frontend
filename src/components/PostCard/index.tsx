@@ -27,7 +27,8 @@ const PostCard = ({ post, handlePostClick }: Props) => {
         {post.image ? (
           <CardMedia
             component="img"
-            image={post.description.replace(/localhost/, "192.168.0.58")}
+            image={post.description.replace(/localhost/, "192.168.0.58")} // <- when api is on another machine
+            // image={post.description} // <- api is on the same machine
             alt={post.title}
           />
         ) : (
