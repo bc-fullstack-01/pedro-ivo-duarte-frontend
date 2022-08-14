@@ -7,7 +7,11 @@ import {
   Typography,
   CardContent,
   Button,
+  TextField,
+  Container,
 } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
+import { PersonSearch } from "@mui/icons-material";
 import CustomAppBar from "../../components/CustomAppBar";
 import CustomAvatar from "../../components/CustomAvatar";
 import server from "../../api/server";
@@ -23,10 +27,16 @@ const Profiles = () => {
   const token = localStorage.getItem("accessToken");
   const sessionProfile = localStorage.getItem("profile") as string;
   const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [searchParam, setSearchParam] = useState({ value: "", error: "" });
+
   useEffect(() => {
+    let url = "";
+    if (searchParam.value) {
+      url = `/search?q=${searchParam.value}`;
+    }
     const getProfiles = async () => {
       try {
-        const response = await server.get("/profiles", {
+        const response = await server.get(`/profiles${url}`, {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -37,7 +47,7 @@ const Profiles = () => {
       }
     };
     getProfiles();
-  }, [token]);
+  }, [token, searchParam]);
 
   const handleFollow = async (id: string, followers: string[]) => {
     let newProfiles;
@@ -77,12 +87,16 @@ const Profiles = () => {
           if (profile._id === id) {
             return {
               ...profile,
-              followers: profile.followers.filter((follower) => follower !== sessionProfile),
+              followers: profile.followers.filter(
+                (follower) => follower !== sessionProfile
+              ),
             };
           } else if (profile._id === sessionProfile) {
             return {
               ...profile,
-              following: profile.following.filter((follower) => follower !== id),
+              following: profile.following.filter(
+                (follower) => follower !== id
+              ),
             };
           } else {
             return profile;
@@ -117,7 +131,9 @@ const Profiles = () => {
               variant="contained"
               onClick={() => handleFollow(profile._id, profile.followers)}
             >
-              {profile.followers.includes(sessionProfile) ? 'Deixar de seguir' : 'Seguir'}
+              {profile.followers.includes(sessionProfile)
+                ? "Deixar de seguir"
+                : "Seguir"}
             </Button>
             {/* </div> */}
           </Stack>
@@ -130,7 +146,22 @@ const Profiles = () => {
   return (
     <div>
       <CustomAppBar title="Perfis" />
-      <div style={{ marginTop: "72px" }}>
+      <Container style={{ display: "flex", flexDirection: "column", marginTop: "82px" }}>
+        <TextField
+          sx={{ marginLeft: "auto" }}
+          variant="outlined"
+          label="Procurar usuário"
+          value={searchParam.value}
+          onChange={(e) => setSearchParam({ value: e.target.value, error: "" })}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonSearch />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Divider sx={{ marginTop: 2 }} />
         <Stack
           direction="column"
           justifyContent="center"
@@ -139,7 +170,7 @@ const Profiles = () => {
         >
           {profilesEL}
         </Stack>
-      </div>
+      </Container>
     </div>
   );
 };
