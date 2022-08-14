@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
+import { SERVER_ADRESS } from "../constants";
 
 export default axios.create({
-  baseURL: 'http://192.168.0.58:4000/v1'
+  baseURL: SERVER_ADRESS,
 });
