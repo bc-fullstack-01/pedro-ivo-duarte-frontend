@@ -11,7 +11,11 @@ import {
   Container,
 } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
-import { PersonSearch } from "@mui/icons-material";
+import {
+  PersonSearch as PersonSearchIcon,
+  PersonAdd as PersonAddIcon,
+  PersonRemove as PersonRemoveIcon,
+} from "@mui/icons-material";
 import CustomAppBar from "../../components/CustomAppBar";
 import CustomAvatar from "../../components/CustomAvatar";
 import server from "../../api/server";
@@ -130,10 +134,19 @@ const Profiles = () => {
               fullWidth
               variant="contained"
               onClick={() => handleFollow(profile._id, profile.followers)}
+              sx={{ display: "flex", gap: "1em" }}
             >
-              {profile.followers.includes(sessionProfile)
-                ? "Deixar de seguir"
-                : "Seguir"}
+              {profile.followers.includes(sessionProfile) ? (
+                <>
+                  <PersonRemoveIcon />
+                  <span>Deixar de seguir</span>
+                </>
+              ) : (
+                <>
+                  <PersonAddIcon />
+                  <span>Seguir</span>
+                </>
+              )}
             </Button>
             {/* </div> */}
           </Stack>
@@ -146,7 +159,9 @@ const Profiles = () => {
   return (
     <div>
       <CustomAppBar title="Perfis" />
-      <Container style={{ display: "flex", flexDirection: "column", marginTop: "82px" }}>
+      <Container
+        style={{ display: "flex", flexDirection: "column", marginTop: "82px" }}
+      >
         <TextField
           sx={{ marginLeft: "auto" }}
           variant="outlined"
@@ -156,7 +171,7 @@ const Profiles = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <PersonSearch />
+                <PersonSearchIcon />
               </InputAdornment>
             ),
           }}
