@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomAppBar from "../../components/CustomAppBar";
 import server from "../../api/server";
+import ChangePassForm from "../../components/ChangePassForm";
 
 interface User {
   _id: string;
@@ -15,8 +16,9 @@ interface User {
 const Profile = () => {
   const navigate = useNavigate();
   const name = localStorage.getItem("user");
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("accessToken") as string;
   const [user, setUser] = useState<User>();
+  const [isChangingPasswd, setIsChangingPasswd] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
@@ -38,6 +40,10 @@ const Profile = () => {
     navigate("/");
   };
 
+  const toggleChangePasswd = () => {
+    setIsChangingPasswd((prevState) => !prevState);
+  };
+
   console.log(user);
 
   const date = user?.createdAt.slice(0, 10).split("-").reverse().join("-");
@@ -48,7 +54,14 @@ const Profile = () => {
         <h1>{name}</h1>
         <Stack spacing={2} alignItems="flex-start">
           <Typography>Conta criada em: {date}</Typography>
-          <Button variant="contained" color="secondary">Trocar senha</Button>
+          {isChangingPasswd && <ChangePassForm token={token} />}
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={toggleChangePasswd}
+          >
+            {!isChangingPasswd ? "Trocar senha" : "Cancelar"}
+          </Button>
           <Button variant="contained" onClick={handleLogout}>
             Sair
           </Button>
