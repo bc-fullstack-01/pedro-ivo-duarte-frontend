@@ -63,7 +63,7 @@ const PostDetail = () => {
   return (
     <div>
       <CustomAppBar title="Post" />
-      <div style={{ marginTop: 64 }}>
+      <div style={{ marginTop: 64, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         {post && <PostCard post={post} handlePostClick={() => {}} />}
       </div>
       <Divider />

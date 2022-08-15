@@ -53,7 +53,7 @@ const Home = () => {
   return (
     <div>
       <CustomAppBar title="home" />
-      <div style={{ marginTop: "56px" }}>
+      <div style={{ marginTop: "56px", display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <InfiniteScroll
           dataLength={posts.length}
           next={loadMorePosts}
